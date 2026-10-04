@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lễ Dạm Ngõ - Ngân Phương & Nhật Long</title>
+
+    <!-- Meta Tags cho SEO & Chia sẻ Mạng Xã Hội (Facebook, Zalo, iMessage) -->
+    <meta name="description"
+        content="Hành trình tình yêu và Album khoảnh khắc Lễ Dạm Ngõ của cặp đôi Ngân Phương & Nhật Long.">
+    <meta property="og:title" content="Lễ Dạm Ngõ - Ngân Phương & Nhật Long">
+    <meta property="og:description"
+        content="Cùng chúng mình lưu giữ những khoảnh khắc đẹp và đáng nhớ nhất trong ngày Lễ Dạm Ngõ.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./04f5a222-a650-4a14-8153-80566038615b.jfif">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Canvas Trái Tim / Cánh Hoa Rơi Background -->
+    <canvas id="falling-canvas"></canvas>
+
+    <!-- Nút Bật/Tắt Nhạc Nền -->
+    <div class="music-toggle-btn" id="musicBtn" title="Bật/Tắt nhạc nền">
+        <i class="fas fa-music"></i>
+        <div class="music-waves">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+    <!-- Thẻ Audio (Nhạc nền: Gói Con Tim Làm Quà) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="./G%C3%B3i%20Con%20Tim%20L%C3%A0m%20Qu%C3%A0.mp3" type="audio/mpeg">
+        <source src="./Gói Con Tim Làm Quà.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Header Navigation Bar (Cố định tinh tế) -->
+    <nav class="nav-bar">
+        <div class="nav-logo">P & L</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Trang Chủ</a></li>
+            <li><a href="#counter">Đếm Ngày</a></li>
+            <li><a href="#gallery">Album Ảnh</a></li>
+            <li><a href="#thankyou">Lời Cảm Ơn</a></li>
+        </ul>
+    </nav>
+
+    <!-- 1. HERO SECTION (Màn hình mở đầu) -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg-parallax" id="heroBg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content fade-in">
+            <span class="sub-subtitle">WELCOME TO OUR MEMORIES</span>
+            <h2 class="event-title">Lễ Dạm Ngõ</h2>
+            <h1 class="couple-names">Ngân Phương <span>&</span> Nhật Long</h1>
+
+            <div class="event-date-box">
+                <span class="line"></span>
+                <span class="date-text" id="displayEventDate">01 . 10 . 2026</span>
+                <span class="line"></span>
+            </div>
+
+            <p class="scroll-down-text">Kéo xuống để cùng chúng mình lưu giữ những khoảnh khắc đẹp nhất ❤️</p>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TRÍCH DẪN MỞ ĐẦU -->
+    <section class="quote-banner">
+        <div class="container reveal-blur">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p class="quote-text">"Ngày dạm ngõ không chỉ là một nghi thức, mà còn là dấu mốc đáng nhớ trên hành trình
+                tình yêu của Ngân Phương và Nhật Long."</p>
+        </div>
+    </section>
+
+    <!-- 2. BỘ ĐẾM NGÀY YÊU NHAU (LOVE COUNTER) -->
+    <section id="counter" class="counter-section">
+        <div class="container reveal-zoom">
+            <div class="section-header">
+                <span class="section-tag">COUNTDOWN & DAYS TOGETHER</span>
+                <h2 class="section-title">Hành Trình Bên Nhau</h2>
+            </div>
+
+            <div class="love-counter-card">
+                <div class="couple-avatar-wrap">
+                    <img src="./anh/IMG_7755.jpeg" alt="Ngân Phương" class="avatar">
+                    <div class="heart-pulse"><i class="fas fa-heart"></i></div>
+                    <img src="./anh/Long.png" alt="Nhật Long" class="avatar">
+                </div>
+
+                <h3 class="counter-header-text">Chúng mình đã chung bước</h3>
+
+                <div class="counter-timer-grid">
+                    <div class="time-block">
+                        <span id="daysCount">0</span>
+                        <small>Ngày</small>
+                    </div>
+                    <div class="time-block">
+                        <span id="hoursCount">0</span>
+                        <small>Giờ</small>
+                    </div>
+                    <div class="time-block">
+                        <span id="minutesCount">0</span>
+                        <small>Phút</small>
+                    </div>
+                    <div class="time-block">
+                        <span id="secondsCount">0</span>
+                        <small>Giây</small>
+                    </div>
+                </div>
+
+                <p class="love-start-date">Kể từ ngày định mệnh: <strong id="startDateText">09/07/2022</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. STORYTELLING GALLERY (Album ảnh cuộn kể chuyện) -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header reveal-blur">
+                <span class="section-tag">MEMORIES GALLERY</span>
+                <h2 class="section-title">Khoảnh Khắc Lễ Dạm Ngõ</h2>
+                <p class="section-desc">Mỗi bức ảnh là một thước phim đong đầy cảm xúc và tình yêu thương</p>
+            </div>
+
+            <div class="story-gallery" id="storyGallery">
+                <!-- Javascript sẽ render danh sách ảnh & các trích dẫn ngắt trang vào đây -->
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX / MODAL XEM ẢNH PHÓNG TO -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="close-lightbox" id="closeLightbox">&times;</span>
+        <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Ảnh trước"><i
+                class="fas fa-chevron-left"></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="Zoom Image" id="lightboxImg">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+        <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Ảnh tiếp theo"><i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- 5. LỜI CẢM ƠN CUỐI TRANG -->
+    <section id="thankyou" class="thankyou-section">
+        <div class="container">
+            <div class="thankyou-card reveal-zoom">
+                <div class="card-border-inner">
+                    <div class="stamp-icon"><i class="fas fa-heart"></i></div>
+                    <h2 class="thankyou-title">Lời Cảm Ơn Chân Thành</h2>
+                    <p class="thankyou-body">
+                        "Chúng con xin gửi lời cảm ơn chân thành đến gia đình, họ hàng, bạn bè và những người thân yêu
+                        đã dành thời gian quý báu để chung vui cùng gia đình trong ngày lễ dạm ngõ đặc biệt này.<br><br>
+                        Sự hiện diện, những lời chúc tốt đẹp và tình cảm của mọi người là niềm hạnh phúc to lớn với
+                        chúng con."
+                    </p>
+                    <div class="thankyou-signature">
+                        <span>Trân trọng & Yêu thương,</span>
+                        <h3 class="signature-names">Ngân Phương & Nhật Long</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>© 2026 Ngân Phương & Nhật Long - Lễ Dạm Ngõ. Forever Together.</p>
+    </footer>
+
+    <!-- Script chính -->
+    <script src="script.js"></script>
+</body>
+
+</html>
